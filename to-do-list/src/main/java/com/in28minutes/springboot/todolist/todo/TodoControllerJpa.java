@@ -22,6 +22,7 @@ public class TodoControllerJpa {
     private TodoRepository todoRepository;
 
     public TodoControllerJpa(TodoRepository todoRepository) {
+        super();
         this.todoRepository = todoRepository;
     }
 

@@ -38,4 +38,8 @@ public class UserDaoService {
         Predicate<? super User> predicate = user -> user.getId().equals(id);
         users.removeIf(predicate);
     }
+
+    public static Integer getCount() {
+        return count;
+    }
 }
