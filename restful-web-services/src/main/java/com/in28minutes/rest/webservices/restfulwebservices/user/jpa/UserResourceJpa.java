@@ -1,5 +1,8 @@
-package com.in28minutes.rest.webservices.restfulwebservices.user;
+package com.in28minutes.rest.webservices.restfulwebservices.user.jpa;
 
+import com.in28minutes.rest.webservices.restfulwebservices.user.User;
+import com.in28minutes.rest.webservices.restfulwebservices.user.UserDaoService;
+import com.in28minutes.rest.webservices.restfulwebservices.user.UserNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -11,22 +14,23 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-public class UserResource {
-    private UserDaoService service;
+public class UserResourceJpa {
+    private UserJpaService service;
 
-    public UserResource(UserDaoService service){
+    public UserResourceJpa(UserJpaService service){
         this.service = service;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/jpa/users")
     public List<User> retrieveAllUsers(){
         return service.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/jpa/users/{id}")
     public ResponseEntity<EntityModel<User>> retrieveUser(@PathVariable Integer id){
         User user = service.findOne(id);
         if(user==null) throw new UserNotFoundException("id: " + id);
@@ -50,20 +54,20 @@ public class UserResource {
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
-    @PostMapping("/users")
+    @PostMapping("/jpa/users")
     public ResponseEntity createUser(@Valid @RequestBody User user){
-        User savedUser = service.save(user);
+        User savedUser = service.saveUser(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
-        
+
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id){
         service.deleteById(id);
     }
