@@ -48,10 +48,8 @@ public class UserResource {
             model.add(next.withRel("next-user:"));
         }
 
-        MappingJacksonValue jacksonValue = new MappingJacksonValue(user);
-        ResponseEntity<EntityModel<User>> entity = new ResponseEntity<>(model, HttpStatus.OK);
 
-        return entity;
+        return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
     @PostMapping("/users")

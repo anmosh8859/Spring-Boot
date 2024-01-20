@@ -1,40 +1,40 @@
 package com.in28minutes.rest.webservices.restfulwebservices.filtering;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
 //@JsonIgnoreProperties({"feild1", "field2"})
+@JsonFilter("SimpleFilter")
 public class SomeBean {
 
-    private String feild1;
+    private String field1;
 //    @JsonIgnore
-    private String feild2;
-    private String feild3;
+    private String field2;
+    private String field3;
 
-    public SomeBean(String feild1, String feild2, String feild3) {
-        this.feild1 = feild1;
-        this.feild2 = feild2;
-        this.feild3 = feild3;
+    public SomeBean(String field1, String field2, String field3) {
+        this.field1 = field1;
+        this.field2 = field2;
+        this.field3 = field3;
     }
 
-    public String getFeild1() {
-        return feild1;
+    public String getField1() {
+        return field1;
     }
 
-    public String getFeild2() {
-        return feild2;
+    public String getField2() {
+        return field2;
     }
 
-    public String getFeild3() {
-        return feild3;
+    public String getField3() {
+        return field3;
     }
 
     @Override
     public String toString() {
         return "SomeBean{" +
-                "feild1='" + feild1 + '\'' +
-                ", feild2='" + feild2 + '\'' +
-                ", feild3='" + feild3 + '\'' +
+                "feild1='" + field1 + '\'' +
+                ", feild2='" + field2 + '\'' +
+                ", feild3='" + field3 + '\'' +
                 '}';
     }
 }
