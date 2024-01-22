@@ -13,7 +13,7 @@ public class Post {
     private Integer id;
 
     @JsonProperty("Description")
-    private String desc;
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -22,9 +22,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(Integer id, String desc, User user) {
+    public Post(Integer id, String description, User user) {
         this.id = id;
-        this.desc = desc;
+        this.description = description;
         this.user = user;
     }
 
@@ -44,19 +44,19 @@ public class Post {
         this.id = id;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", desc='" + desc + '\'' +
+                ", desc='" + description + '\'' +
                 ", user=" + user +
                 '}';
     }

@@ -64,20 +64,9 @@ public class PostResourceJpa {
     @PostMapping("/{id}/posts")
     public ResponseEntity createPost( @PathVariable int id, @Valid @RequestBody Post post){
         User u = userService.findOne(id);
-        System.out.println();
-        System.out.println();
-        System.out.println(u);
-        System.out.println();
-        System.out.println();
+
         if(u == null) throw new UserNotFoundException("User with id: " + id + " not found!");
         post.setUser(u);
-
-        System.out.println();
-        System.out.println();
-        System.out.println(post);
-        System.out.println();
-        System.out.println();
-
 
         Post savedPost = postService.savePost(post);
         URI location = ServletUriComponentsBuilder

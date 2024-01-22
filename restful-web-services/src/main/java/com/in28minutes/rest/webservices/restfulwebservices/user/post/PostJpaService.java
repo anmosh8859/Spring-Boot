@@ -32,13 +32,6 @@ public class PostJpaService {
     }
 
     public Post savePost(Post post){
-
-        System.out.println();
-        System.out.println();
-        System.out.println("In service" + post);
-        System.out.println();
-        System.out.println();
-
         return repository.save(post);
     }
 
