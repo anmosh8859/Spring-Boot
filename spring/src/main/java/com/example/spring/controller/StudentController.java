@@ -1,7 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.entity.Student;
-import com.example.spring.service.StudentService;
+import com.example.spring.service.StudentServices;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 @RestController
 @RequestMapping("students")
 public class StudentController {
-    public StudentController(StudentService service) {
+    public StudentController(StudentServices service) {
         this.service = service;
     }
 
-    private StudentService service;
+    private StudentServices service;
 
     @PostMapping
     public Student createStudent(@RequestBody Student student){
